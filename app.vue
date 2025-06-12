@@ -40,19 +40,19 @@
       style="background-image: url('/path-to-your-image.jpg');"
     >
       <!-- Matn qismi -->
-      <div data-aos="fade-right" class="z-10 max-w-2xl text-left bg-white/90 p-6">
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900">
+      <div class="z-10 max-w-2xl text-left bg-white/90 p-6">
+        <h2 data-aos="fade-down" class="text-2xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900">
           Biz haqimizda
         </h2>
-        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 mb-6 leading-relaxed">
+        <p data-aos="fade-right" class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 mb-6 leading-relaxed">
           Biz — zamonaviy texnologiyalarga asoslangan, innovatsion fikrlaydigan jamoamiz. Maqsadimiz — tadbirkorlar, kichik va o‘rta biznes egalari uchun
           o‘z brendlariga mos veb-saytlar, landing pagelar va onlayn do‘konlar yaratishdir.
         </p>
-        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed">
+        <p data-aos="fade-right" class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 leading-relaxed">
           Har bir loyiha ustida individual yondashuv, UX/UI dizayn, mobil moslik va tez ishlashga alohida e’tibor qaratamiz.
           Saytingiz — bu sizning onlayn vizitkangiz!
         </p>
-        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed">
+        <p data-aos="fade-right" class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed">
           2023-yildan buyon biz o‘nlab loyihalarni amalga oshirdik va mijozlarimiz bizning yondashuvimizdan mamnun.
           Endi navbat sizning biznesingizda!
         </p>
