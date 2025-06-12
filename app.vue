@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-gray-800 font-poppins">
+  <div class="bg-white text-gray-800 font-poppins max-w-screen overflow-x-hidden">
     <div>
 
     </div>
@@ -362,6 +362,8 @@ const services = [
 }
 
 html {
+  max-width: 100vw;
+  overflow-x: hidden;
   scroll-behavior: smooth !important;
 }
 .floating-image {
