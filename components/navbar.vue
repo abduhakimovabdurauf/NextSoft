@@ -32,7 +32,6 @@
       <a href="#home" class="block text-gray-700 hover:text-black">Bosh sahifa</a>
       <a href="#about" class="block text-gray-700 hover:text-black">Biz haqimizda</a>
       <a href="#services" class="block text-gray-700 hover:text-black">Xizmatlar</a>
-      <a href="#portfolio" class="block text-gray-700 hover:text-black">Portfolio</a>
       <a href="#contact" class="block text-gray-700 hover:text-black">Bog‘lanish</a>
     </div>
   </nav>

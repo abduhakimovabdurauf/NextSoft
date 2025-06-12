@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-gray-800 font-poppins max-w-screen overflow-x-hidden">
+  <div class="bg-white text-gray-800 font-poppins max-w-screen overflow-y-auto overflow-x-hidden">
     <div>
 
     </div>
@@ -356,14 +356,14 @@ const services = [
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
+* {
+  outline: 1px solid red;
+}
 .font-poppins {
   font-family: 'Poppins', sans-serif;
 }
 
 html {
-  max-width: 100vw;
-  overflow-x: hidden;
   scroll-behavior: smooth !important;
 }
 .floating-image {
