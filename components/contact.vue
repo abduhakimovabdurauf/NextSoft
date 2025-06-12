@@ -28,7 +28,7 @@
 
       <!-- Forma -->
       <div data-aos="fade-left">
-        <h2 class="text-3xl font-bold text-neutral-800 mb-8">Menga yozing</h2>
+        <h2 class="text-xl font-bold text-neutral-800 mb-8">Bizga yozing, va biz siz bilan bog'lanamiz!</h2>
         <form @submit.prevent="submitForm" class="space-y-4">
           <input v-model="name" type="text" placeholder="Ismingiz" required class="w-full border border-gray-300 rounded p-3 text-lg" />
           <input v-model="phone" type="tel" placeholder="Telefon raqamingiz" required class="w-full border border-gray-300 rounded p-3 text-lg" />
