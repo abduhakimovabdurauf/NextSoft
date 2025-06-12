@@ -251,6 +251,22 @@
 import { ref } from 'vue'
 import OrderModal from '~/components/OrderModal.vue'
 
+useHead({
+  title: 'Zamonaviy va professional veb-saytlar | Biznesingiz uchun yechim',
+  meta: [
+    { name: 'description', content: 'Brendingizga mos, mobilga moslashtirilgan va foydalanuvchiga qulay veb-saytlar yaratamiz. Biznesingizni raqamli dunyoga olib chiqamiz.' },
+    { name: 'keywords', content: 'veb sayt yaratish, landing page, onlayn do‘kon, web development, mobilga mos saytlar' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Zamonaviy va professional veb-saytlar' },
+    { property: 'og:description', content: 'Biznesingiz uchun moslashtirilgan websaytlar' },
+    { property: 'og:image', content: '/preview.jpg' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://sizningsaytingiz.uz' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://sizningsaytingiz.uz' }
+  ]
+})
 
 
 const modalVisible = ref(false)
