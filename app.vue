@@ -37,7 +37,6 @@
     <section
       id="about"
       class="relative lg:min-h-screen flex flex-col justify-between md:flex-row items-center bg-white py-16 px-4 sm:px-8 lg:px-16 bg-cover bg-center"
-      style="background-image: url('/path-to-your-image.jpg');"
     >
       <!-- Matn qismi -->
       <div class="z-10 max-w-2xl text-left bg-white/90 p-6">
@@ -70,12 +69,40 @@
     </section>
 
 
+    <section id="portfolio" class="py-20 sm:px-8 lg:px-16 bg-gray-50 px-2">
+      <h2 data-aos="fade-down" class="text-3xl font-bold mb-10 text-center">Portfolio</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          v-for="site in sites"
+          :key="site.link"
+          data-aos="fade-right"
+          class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition"
+        >
+          <a :href="site.link" target="_blank" class="block">
+            <div class="flex flex-col items-center">
+              <NuxtImg
+                :src="site.desktopImage"
+                alt="Desktop screenshot"
+                class="rounded-md w-full"
+              />
+            </div>
+            <div class="mt-4 text-center">
+              <h3 class="text-lg font-semibold">{{ site.title }}</h3>
+              <p class="text-sm text-gray-600">{{ site.description }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
 
     <!-- Services Section -->
     <section id="services" class="py-20 sm:px-8 lg:px-16 bg-gray-50">
       <h2 data-aos="fade-down" class="text-4xl font-bold text-center mb-16 text-gray-800">Xizmatlarimiz</h2>
 
-      <div class="flex flex-wrap justify-around gap-10">
+      <div class="flex flex-wrap justify-around gap-10 px-4 sm:px-0">
         <div
           v-for="(card, index) in services"
           :key="index"
@@ -255,11 +282,11 @@ useHead({
   title: 'Zamonaviy va professional veb-saytlar | Biznesingiz uchun yechim',
   meta: [
     { name: 'description', content: 'Brendingizga mos, mobilga moslashtirilgan va foydalanuvchiga qulay veb-saytlar yaratamiz. Biznesingizni raqamli dunyoga olib chiqamiz.' },
-    { name: 'keywords', content: 'veb sayt yaratish, landing page, onlayn do‘kon, web development, mobilga mos saytlar' },
+    { name: 'keywords', content: 'web sayt yaratish, landing page, onlayn do‘kon, web development, mobilga mos saytlar' },
     { name: 'robots', content: 'index, follow' },
     { property: 'og:title', content: 'Zamonaviy va professional veb-saytlar' },
     { property: 'og:description', content: 'Biznesingiz uchun moslashtirilgan websaytlar' },
-    { property: 'og:image', content: '/preview.jpg' },
+    { property: 'og:image', content: '/background.jpg' },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://sizningsaytingiz.uz' }
   ],
@@ -267,6 +294,64 @@ useHead({
     { rel: 'canonical', href: 'https://sizningsaytingiz.uz' }
   ]
 })
+
+const sites = [
+  {
+    title: 'BizSoft',
+    link: 'https://bizsoft.uz/',
+    desktopImage: '/bizsoft.png',
+    description: 'BizSoft kompaniyasi uchun biznes veb-sayt',
+  },
+  {
+    title: 'GoPharm',
+    link: 'https://gopharm.uz/',
+    desktopImage: '/gopharm.png',
+    description: 'Dorixona tizimi uchun onlayn platforma',
+  },
+  {
+    title: 'BurgerToy',
+    link: 'https://burgertoy.uz/',
+    desktopImage: '/burgertoy.png',
+    description: 'Fast food tarmog‘i uchun zamonaviy sayt',
+  },
+  {
+    title: 'Lotin.uz',
+    link: 'https://lotin.uz/',
+    desktopImage: '/lotin.png',
+    description: 'Lotin yozuvini o‘rganish uchun platforma',
+  },
+  {
+    title: 'ESuv',
+    link: 'https://esuv.uz/',
+    desktopImage: '/esuv.png',
+    description: 'Elektron suv tizimi uchun veb-sayt',
+  },
+  {
+    title: 'Tellock',
+    link: 'https://tellock.uz/',
+    desktopImage: '/telloc.png',
+    description: 'Aqlli qulflar uchun mahsulot taqdimoti sayti',
+  },
+  // {
+  //   title: 'Quva Turizm',
+  //   link: 'https://quvaturizm.uz/',
+  //   desktopImage: '/quvaturizm.png',
+  //   description: 'Turizmni rivojlantirish bo‘yicha rasmiy sayt',
+  // },
+  {
+    title: 'MRTM.uz',
+    link: 'https://mrtm.uz/',
+    desktopImage: '/mrtm.png',
+    description: 'Raqamli texnologiyalar markazi uchun web-sayt',
+  },
+  {
+    title: 'Wecom Ltd',
+    link: 'https://wecomltd.com/',
+    desktopImage: '/wecom.png',
+    description: 'Yonilg‘i, o‘g‘it va metallarni qayta ishlovchi kompaniya uchun sayt',
+  }
+]
+
 
 
 const modalVisible = ref(false)

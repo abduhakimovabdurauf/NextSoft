@@ -26,7 +26,8 @@
     </div>
 
     <!-- Mobile nav links with smooth transition -->
-    <div id="mobile-menu"
+    <div
+      id="mobile-menu"
       class="md:hidden overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-4 bg-white space-y-2"
     >
       <a href="#home" class="block text-gray-700 hover:text-black">Bosh sahifa</a>
@@ -36,7 +37,6 @@
     </div>
   </nav>
 </template>
-
 
 <script setup>
 import { onMounted } from 'vue'
@@ -48,12 +48,11 @@ onMounted(() => {
 
   toggle?.addEventListener('click', () => {
     isOpen = !isOpen
+
     if (isOpen) {
-      menu.classList.remove('max-h-0')
-      menu.classList.add('max-h-96')
+      menu.style.maxHeight = menu.scrollHeight + "px"
     } else {
-      menu.classList.add('max-h-0')
-      menu.classList.remove('max-h-96')
+      menu.style.maxHeight = "0px"
     }
   })
 })
