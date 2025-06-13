@@ -384,7 +384,7 @@ const services = [
   },
   {
     title: 'Vizitka Sayt',
-    price: '$150 dan boshlab',
+    price: '1.5mln so`m dan boshlab',
     features: [
       "Kompaniya haqida ma'lumot sahifasi",
       'Kontaktlar va joylashuv',
