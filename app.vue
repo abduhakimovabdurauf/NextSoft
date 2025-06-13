@@ -63,11 +63,14 @@
 
       <!-- Rasm: faqat md: dan katta ekranlarda ko‘rinadi -->
       <div data-aos="fade-left" class="hidden xl:block 2xl:mr-48">
-        <img
+        <NuxtImg
           src="/about-background.png"
           alt="Biz haqimizda"
-          class="w-[600px] h-[600px] object-cover floating-image"
+          width="600"
+          height="600"
+          class="object-cover floating-image"
         />
+
       </div>
 
     </section>
@@ -286,7 +289,7 @@ useHead({
   title: 'Zamonaviy va professional veb-saytlar | Biznesingiz uchun yechim',
   meta: [
     { name: 'description', content: 'Brendingizga mos, mobilga moslashtirilgan va foydalanuvchiga qulay veb-saytlar yaratamiz. Biznesingizni raqamli dunyoga olib chiqamiz.' },
-    { name: 'keywords', content: 'web sayt yaratish, landing page, onlayn do‘kon, web development, mobilga mos saytlar' },
+    { name: 'keywords', content: 'sayt yaratish, web sayt yaratish, landing page, landing page yaratish, chiroyli sayt yaratish, onlayn do‘kon, web development, mobilga mos saytlar' },
     { name: 'robots', content: 'index, follow' },
     { property: 'og:title', content: 'Zamonaviy va professional veb-saytlar' },
     { property: 'og:description', content: 'Biznesingiz uchun moslashtirilgan websaytlar' },

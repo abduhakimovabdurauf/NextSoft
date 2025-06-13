@@ -10,6 +10,7 @@
       <div class="hidden md:flex space-x-8">
         <a href="#home" class="text-gray-700 hover:text-black font-medium transition">Bosh sahifa</a>
         <a href="#about" class="text-gray-700 hover:text-black font-medium transition">Biz haqimizda</a>
+        <a href="#portfolio" class="text-gray-700 hover:text-black font-medium transition">Portfolio</a>
         <a href="#services" class="text-gray-700 hover:text-black font-medium transition">Xizmatlar</a>
         <a href="#contact" class="text-gray-700 hover:text-black font-medium transition">Bog‘lanish</a>
       </div>
@@ -32,6 +33,7 @@
     >
       <a href="#home" class="block text-gray-700 hover:text-black">Bosh sahifa</a>
       <a href="#about" class="block text-gray-700 hover:text-black">Biz haqimizda</a>
+      <a href="#portfolio" class="block text-gray-700 hover:text-black">Portfolio</a>
       <a href="#services" class="block text-gray-700 hover:text-black">Xizmatlar</a>
       <a href="#contact" class="block text-gray-700 hover:text-black">Bog‘lanish</a>
     </div>
