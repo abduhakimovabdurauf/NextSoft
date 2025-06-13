@@ -372,7 +372,7 @@ const openModal = (serviceName) => {
 const services = [
   {
     title: 'Landing Page',
-    price: '$100 dan boshlab',
+    price: '1mln so`m dan boshlab',
     features: [
       'Bitta sahifali tuzilma',
       'Mijozni jalb qiluvchi dizayn',
@@ -396,7 +396,7 @@ const services = [
   },
   {
     title: 'Koʻp Sahifali Sayt',
-    price: '$200 dan boshlab',
+    price: '2mln so`m dan boshlab',
     features: [
       'Har bir bo‘lim uchun alohida sahifa',
       'Murakkab navigatsiya',
@@ -408,7 +408,7 @@ const services = [
   },
   {
     title: 'Onlayn Doʻkon',
-    price: '$350 dan boshlab',
+    price: '3.5mln so`m dan boshlab',
     features: [
       'Mahsulotlar katalogi',
       'Savatcha va buyurtma shakli',
@@ -420,7 +420,7 @@ const services = [
   },
   {
     title: 'CRM Tizimi',
-    price: '$500 dan boshlab',
+    price: '5mln so`m dan boshlab',
     features: [
       'Mijozlar bazasini yuritish',
       'Buyurtmalarni boshqarish',
@@ -433,7 +433,7 @@ const services = [
   },
   {
     title: 'Admin Panel',
-    price: '+$100',
+    price: '+1mln so`m',
     features: [
       'Maxsus boshqaruv paneli',
       'Maʼlumotlar tahriri va boshqaruvi',
