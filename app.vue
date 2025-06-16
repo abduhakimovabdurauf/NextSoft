@@ -1,14 +1,8 @@
 <template>
-  <div class="bg-white text-gray-800 font-poppins max-w-screen overflow-y-auto overflow-x-hidden">
-    <div>
-
-    </div>
+<div class="max-w-screen overflow-x-hidden overflow-y-visible md:overflow-x-visible">
+  <div class="bg-white text-gray-800 font-poppins max-w-screen">
     <navbar/>
-    <!-- Hero Section -->
     <section id="home" class="relative min-h-screen bg-gray-50 overflow-hidden flex items-center">
-      <!-- Fon rasmi -->
-      
-      <!-- Qora parda -->
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
       
       <NuxtImg
@@ -16,7 +10,6 @@
         alt="Fon rasmi"
         class="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none z-0"
       />
-      <!-- Kontent -->
       <div data-aos="fade-right" class="relative z-20 px-4 sm:px-10 lg:px-20 w-full max-w-7xl text-white">
         <div class="text-left">
           <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 sm:leading-[55px] md:leading-[65px]">
@@ -33,16 +26,10 @@
       </div>
     </section>
 
-
-
-
-
-    <!-- About Section -->
     <section
       id="about"
       class="relative lg:min-h-screen flex flex-col justify-between md:flex-row items-center bg-white py-16 px-4 sm:px-8 lg:px-16 bg-cover bg-center"
     >
-      <!-- Matn qismi -->
       <div class="z-10 max-w-2xl text-left bg-white/90 p-6">
         <h2 data-aos="fade-down" class="text-2xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900">
           Biz haqimizda
@@ -61,7 +48,6 @@
         </p>
       </div>
 
-      <!-- Rasm: faqat md: dan katta ekranlarda ko‘rinadi -->
       <div data-aos="fade-left" class="hidden xl:block 2xl:mr-48">
         <NuxtImg
           src="/about-background.png"
@@ -105,85 +91,60 @@
 
 
 
-    <!-- Services Section -->
     <section id="services" class="py-20 sm:px-8 lg:px-16 bg-gray-50">
       <h2 data-aos="fade-down" class="text-4xl font-bold text-center mb-16 text-gray-800">Xizmatlarimiz</h2>
 
+      <!-- Kategoriya filter -->
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <button
+          v-for="category in categories"
+          :key="category"
+          @click="selectedCategory = category"
+          :class="[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all',
+            selectedCategory === category
+              ? 'bg-green-500 text-white'
+              : 'bg-gray-200 text-gray-800 hover:bg-green-100'
+          ]"
+        >
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Xizmatlar kartalari -->
       <div class="flex flex-wrap justify-around gap-10 px-4 sm:px-0">
         <div
-          v-for="(card, index) in services"
+          v-for="(card, index) in filteredServices"
           :key="index"
-          data-aos="fade-right"
-          class="bg-white flex flex-col p-8 min-h-[400px] w-full sm:w-80 rounded-2xl shadow-xl hover:scale-105 transition duration-300">
+          data-aos="fade-up"
+          class="bg-white cursor-pointer duration-300 flex flex-col p-8 min-h-[400px] w-full sm:w-80 rounded-2xl shadow-xl hover:scale-105">
           
           <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ card.title }}</h3>
           <ul class="space-y-3 text-gray-700 mb-6 text-base leading-relaxed">
-            <li v-for="(item, i) in card.features" :key="i" class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg">
+            <li
+              v-for="(item, i) in card.features"
+              :key="i"
+              class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg">
               {{ item }}
             </li>
           </ul>
           <p class="font-bold text-lg text-green-500 mt-auto text-right">{{ card.price }}</p>
           <button
             @click="openModal(card.title)"
-            class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
+            class="mt-4 bg-green-500 cursor-pointer text-white py-2 px-4 rounded hover:bg-green-600">
             Buyurtma berish
           </button>
         </div>
       </div>
 
-      <!-- Modal -->
+
       <OrderModal :visible="modalVisible" :selectedService="selectedService" @close="modalVisible = false" />
     </section>
-
-
-
-
-
-
-    <!-- Pricing Section -->
-    <!-- <section class="py-16 px-4 sm:px-8 lg:px-16" id="prices">
-      <h2 class="text-3xl font-semibold text-center mb-12">Narxlar</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="border rounded-xl p-6 text-center shadow-md hover:shadow-lg transition duration-300">
-          <h3 class="text-xl font-semibold mb-2">Starter</h3>
-          <p class="text-3xl font-bold mb-4">$100</p>
-          <ul class="text-left mb-4 space-y-1 text-sm">
-            <li>✔ Landing Page</li>
-            <li>✔ Mobilga mos</li>
-            <li>✔ 1 ta sahifa</li>
-          </ul>
-          <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Buyurtma berish</button>
-        </div>
-        <div class="border rounded-xl p-6 text-center shadow-md hover:shadow-lg transition duration-300">
-          <h3 class="text-xl font-semibold mb-2">Biznes</h3>
-          <p class="text-3xl font-bold mb-4">$250</p>
-          <ul class="text-left mb-4 space-y-1 text-sm">
-            <li>✔ Katalog Sayt</li>
-            <li>✔ 5-6 sahifa</li>
-            <li>✔ Foydalanuvchiga qulay interfeys</li>
-          </ul>
-          <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Buyurtma berish</button>
-        </div>
-        <div class="border rounded-xl p-6 text-center shadow-md bg-black text-white hover:shadow-lg transition duration-300">
-          <h3 class="text-xl font-semibold mb-2">Maxsus</h3>
-          <p class="text-3xl font-bold mb-4">Custom</p>
-          <ul class="text-left mb-4 space-y-1 text-sm">
-            <li>✔ Online do‘kon</li>
-            <li>✔ Admin panel</li>
-            <li>✔ Maxsus dizayn</li>
-          </ul>
-          <button class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">Buyurtma berish</button>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- Process Section -->
 
     
     <section class="py-20 px-6 bg-[#f8fbff]">
       <h2 data-aos="fade-down" class="text-4xl font-bold text-center mb-16 text-gray-800">Jarayon qanday bo'ladi ?</h2>
       <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- CARD TEMPLATE -->
         <div data-aos="fade-right" class="flex flex-col items-center text-center border border-neutral-300 rounded-xl p-6 bg-white min-h-[240px]">
           <div class="w-14 h-14 border-2 border-neutral-700 text-neutral-700 rounded-full flex items-center justify-center text-lg font-semibold mb-4">1</div>
           <i class="bx bx-user-check text-[48px] text-neutral-700 mb-4 leading-none"></i>
@@ -224,7 +185,7 @@
     </section>
 
 
-  <contact />
+    <contact />
 
 
 
@@ -254,30 +215,26 @@
           <div class="flex flex-col gap-2 text-sm text-neutral-300">
             <div class="flex items-center gap-2">
               <i class="bx bxs-phone text-lg"></i>
-              <a href="tel:+998901234567">+998 90 123 45 67</a>
+              <a href="tel:+998900400103">+998 900 40 01 03</a>
             </div>
             <div class="flex items-center gap-2">
               <i class="bx bxl-telegram text-lg"></i>
-              <a href="https://t.me/nextsoft" target="_blank" class="hover:text-white">t.me/nextsoft</a>
+              <a href="https://t.me/Jamoliddinovich92" target="_blank" class="hover:text-white">t.me/Jamoliddinovich92</a>
             </div>
             <div class="flex items-center gap-2">
               <i class="bx bx-envelope text-lg"></i>
-              <span>info@nextsoft.uz</span>
+              <span><strong>Email:</strong> <a href="mailto:manfisstar1992@gmail.com">manfisstar1992@gmail.com</a></span>
             </div>
           </div>
         </div>
 
       </div>
-
-      <!-- Pastki chiziq -->
       <div class="mt-10 border-t border-neutral-700 pt-6 text-center text-sm text-neutral-500">
         © 2025 NextSoft. Barcha huquqlar himoyalangan.
       </div>
     </footer>
-
   </div>
-
-
+</div>
 
 </template>
 
@@ -372,7 +329,9 @@ const openModal = (serviceName) => {
 const services = [
   {
     title: 'Landing Page',
+    category: 'Web',
     price: '1mln so`m dan boshlab',
+    priceValue: 1000000,
     features: [
       'Bitta sahifali tuzilma',
       'Mijozni jalb qiluvchi dizayn',
@@ -384,7 +343,9 @@ const services = [
   },
   {
     title: 'Vizitka Sayt',
-    price: '1.5mln so`m dan boshlab',
+    category: 'Web',
+    price: '2mln so`m dan boshlab',
+    priceValue: 2000000,
     features: [
       "Kompaniya haqida ma'lumot sahifasi",
       'Kontaktlar va joylashuv',
@@ -396,7 +357,9 @@ const services = [
   },
   {
     title: 'Koʻp Sahifali Sayt',
-    price: '2mln so`m dan boshlab',
+    category: 'Web',
+    price: '5mln so`m dan boshlab',
+    priceValue: 5000000,
     features: [
       'Har bir bo‘lim uchun alohida sahifa',
       'Murakkab navigatsiya',
@@ -408,7 +371,9 @@ const services = [
   },
   {
     title: 'Onlayn Doʻkon',
-    price: '3.5mln so`m dan boshlab',
+    category: 'Web',
+    price: '7mln so`m dan boshlab',
+    priceValue: 7000000,
     features: [
       'Mahsulotlar katalogi',
       'Savatcha va buyurtma shakli',
@@ -420,7 +385,9 @@ const services = [
   },
   {
     title: 'CRM Tizimi',
-    price: '5mln so`m dan boshlab',
+    category: 'Tizimlar',
+    price: '10mln so`m dan boshlab',
+    priceValue: 10000000,
     features: [
       'Mijozlar bazasini yuritish',
       'Buyurtmalarni boshqarish',
@@ -433,7 +400,9 @@ const services = [
   },
   {
     title: 'Admin Panel',
+    category: 'Tizimlar',
     price: '+1mln so`m',
+    priceValue: 1000000,
     features: [
       'Maxsus boshqaruv paneli',
       'Maʼlumotlar tahriri va boshqaruvi',
@@ -441,8 +410,155 @@ const services = [
       'Yopiq kirish sahifasi',
       'Saytga to‘liq integratsiya'
     ]
+  },
+  {
+    title: 'Telegram Bot',
+    category: 'Botlar',
+    price: '2mln so`m dan boshlab',
+    priceValue: 2000000,
+    features: [
+      'Avtomatlashtirilgan javoblar',
+      'Buyurtma va so‘rov shakllari',
+      'Admin panel bilan integratsiya',
+      'Statistikalar va foydalanuvchi nazorati',
+      'Inline tugmalar, media qo‘llab-quvvatlovi',
+      'Har qanday biznesga moslashtirish'
+    ]
+  },
+  {
+    title: 'UI/UX Dizayn',
+    category: 'Design',
+    price: '1.5mln so`m dan boshlab',
+    priceValue: 1500000,
+    features: [
+      'Figma yoki Adobe XD formatida',
+      'Mobil va desktop versiya',
+      'Interaktiv prototip',
+      'Brendga mos dizayn konsepsiyasi',
+      'Foydalanuvchi tajribasi (UX) optimallashtirilgan',
+      'Developer-friendly eksport'
+    ]
+  },
+  {
+    title: 'Grafik Dizayn (To‘plam)',
+    category: 'Design',
+    price: '500 ming so`mdan boshlab',
+    priceValue: 500000,
+    features: [
+      'Logo dizayn',
+      'Vizitka va flayer',
+      'Prezentatsiya slaydlar',
+      'Brandbook yaratish',
+      'SMM post dizaynlari',
+      'Menyu va prevyu dizaynlar'
+    ]
+  },
+  {
+    title: 'Logo Dizayn',
+    category: 'Design',
+    price: '500 ming so`mdan boshlab',
+    priceValue: 500000,
+    features: [
+      'Minimalistik va zamonaviy dizayn',
+      'Rang variantlari',
+      'Vector formatda eksport (SVG, PDF)',
+      '2-3 ta variantdan tanlash',
+      'Qayta tahrirlash imkoniyati'
+    ]
+  },
+  {
+    title: 'Brandbook',
+    category: 'Design',
+    price: '5mln so`mdan boshlab',
+    priceValue: 5000000,
+    features: [
+      'Logo foydalanish qoidalari',
+      'Rang palitrasi',
+      'Shriftlar va ikonlar',
+      'Grafik elementlar',
+      'To‘liq PDF ko‘rinishida'
+    ]
+  },
+  {
+    title: 'Motion Dizayn',
+    category: 'Video',
+    price: '2mln so`m dan boshlab',
+    priceValue: 2000000,
+    features: [
+      'Intro/outro videolar',
+      'Reklama videolari',
+      'SMM uchun harakatli postlar',
+      'Video animatsiya',
+      'Brendingizga mos harakatlar'
+    ]
+  },
+  {
+    title: '3D Dizayn',
+    category: 'Design',
+    price: '3mln so`m dan boshlab',
+    priceValue: 3000000,
+    features: [
+      'Mahsulot modellari',
+      'Interyer/eksteryer vizualizatsiya',
+      '3D animatsiyalar',
+      'Reklama uchun 3D sahnalar',
+      'Blender formatida yoki video/picture'
+    ]
+  },
+  {
+    title: 'Hosting Xizmatlari',
+    category: 'Web',
+    price: '100 ming so`mdan boshlab',
+    priceValue: 100000,
+    features: [
+      '1 yilgacha hosting',
+      'Domen ulash xizmatlari',
+      'SSL sertifikat',
+      '24/7 texnik qo‘llab-quvvatlash',
+      'Saytni yuklab berish va ulash'
+    ]
+  },
+  {
+    title: 'Video Montaj',
+    category: 'Video',
+    price: '2mln so`m dan boshlab',
+    priceValue: 2000000,
+    features: [
+      'Reklama, vlog, ijtimoiy tarmoq videolari',
+      'Rang koreksiyasi va sountrack qo‘shish',
+      'Subtitrlash va animatsiyalar',
+      'Full HD yoki 4K eksport',
+      'Mijozga mos formatda yetkazib berish'
+    ]
+  },
+  {
+    title: 'Video Tasvirga Olish',
+    category: 'Video',
+    price: '2.5mln so`m dan boshlab',
+    priceValue: 2500000,
+    features: [
+      '1-2 kamerali professional suratga olish',
+      'Yoritish jihozlari bilan ta’minlash',
+      'Joyda yoki studiyada tasvirga olish',
+      'Mikrofon bilan sifatli audio yozish',
+      'Video montaj bilan to‘liq paket mumkin'
+    ]
   }
-]
+];
+
+
+const selectedCategory = ref('Barchasi');
+
+const filteredServices = computed(() => {
+  const filtered = selectedCategory.value === 'Barchasi'
+    ? services
+    : services.filter(service => service.category === selectedCategory.value);
+
+  return filtered.sort((a, b) => a.priceValue - b.priceValue);
+});
+
+const categories = computed(() => ['Barchasi', ...new Set(services.map(s => s.category))]);
+
 
 </script>
 

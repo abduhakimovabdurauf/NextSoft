@@ -9,15 +9,15 @@
         <ul class="space-y-6 text-neutral-800 text-xl font-medium leading-relaxed">
           <li class="flex items-center gap-3">
             <i class="bx bx-phone-call text-2xl text-green-600"></i>
-            <span><strong>Telefon:</strong> <a href="tel:+998901234567" class="text-blue-600 hover:underline ml-1">+998 90 123 45 67</a></span>
+            <span><strong>Telefon:</strong> <a href="tel:+998900400103" class="text-blue-600 hover:underline ml-1">+998 900 40 01 03</a></span>
           </li>
           <li class="flex items-center gap-3">
             <i class="bx bx-envelope text-2xl text-green-600"></i>
-            <span><strong>Email:</strong> <a href="mailto:youremail@example.com" class="text-blue-600 hover:underline ml-1">youremail@example.com</a></span>
+            <span><strong>Email:</strong> <a href="mailto:manfisstar1992@gmail.com" class="text-blue-600 hover:underline ml-1">manfisstar1992@gmail.com</a></span>
           </li>
           <li class="flex items-center gap-3">
             <i class="bx bxl-telegram text-2xl text-green-600"></i>
-            <span><strong>Telegram:</strong> <a href="https://t.me/username" target="_blank" class="text-blue-600 hover:underline ml-1">@username</a></span>
+            <span><strong>Telegram:</strong> <a href="https://t.me/Jamoliddinovich92" target="_blank" class="text-blue-600 hover:underline ml-1">@Jamoliddinovich92</a></span>
           </li>
           <li class="flex items-center gap-3">
             <i class="bx bx-map text-2xl text-green-600"></i>
