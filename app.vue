@@ -20,7 +20,7 @@
           </p>
 
           <a href="#services" class="inline-block bg-black text-white text-sm sm:text-base md:text-lg font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-800 transition duration-300 shadow-md">
-            Narxlarni ko‘rish
+            Xizmatlarimizni ko‘rish
           </a>
         </div>
       </div>
