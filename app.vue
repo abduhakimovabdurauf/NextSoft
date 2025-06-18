@@ -1,8 +1,8 @@
 <template>
-<div class="max-w-screen overflow-x-hidden overflow-y-visible md:overflow-x-visible">
+<div class="max-w-screen overflow-x-hidden md:overflow-x-visible">
   <div class="bg-white text-gray-800 font-poppins max-w-screen">
     <navbar/>
-    <section id="home" class="relative min-h-screen bg-gray-50 overflow-hidden flex items-center">
+    <section id="home" class="relative h-screen bg-gray-50 overflow-hidden flex items-center">
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
       
       <NuxtImg
@@ -112,30 +112,34 @@
       </div>
 
       <!-- Xizmatlar kartalari -->
-      <div class="flex flex-wrap justify-around gap-10 px-4 sm:px-0">
-        <div
-          v-for="(card, index) in filteredServices"
-          :key="index"
-          data-aos="fade-up"
-          class="bg-white cursor-pointer duration-300 flex flex-col p-8 min-h-[400px] w-full sm:w-80 rounded-2xl shadow-xl hover:scale-105">
-          
-          <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ card.title }}</h3>
-          <ul class="space-y-3 text-gray-700 mb-6 text-base leading-relaxed">
-            <li
-              v-for="(item, i) in card.features"
-              :key="i"
-              class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg">
-              {{ item }}
-            </li>
-          </ul>
-          <p class="font-bold text-lg text-green-500 mt-auto text-right">{{ card.price }}</p>
-          <button
-            @click="openModal(card.title)"
-            class="mt-4 bg-green-500 cursor-pointer text-white py-2 px-4 rounded hover:bg-green-600">
-            Buyurtma berish
-          </button>
-        </div>
+      <div class="grid gap-10 px-4 sm:px-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div
+        v-for="(card, index) in filteredServices"
+        :key="index"
+        data-aos="fade-up"
+        class="bg-white cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col p-8 min-h-[400px] w-full rounded-2xl shadow-xl">
+        
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ card.title }}</h3>
+        
+        <ul class="space-y-3 text-gray-700 mb-6 text-base leading-relaxed">
+          <li
+            v-for="(item, i) in card.features"
+            :key="i"
+            class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg">
+            {{ item }}
+          </li>
+        </ul>
+        
+        <p class="font-bold text-lg text-green-500 mt-auto text-right">{{ card.price }}</p>
+        
+        <button
+          @click="openModal(card.title)"
+          class="mt-4 bg-green-500 cursor-pointer text-white py-2 px-4 rounded transition-all duration-300 hover:bg-green-600">
+          Buyurtma berish
+        </button>
       </div>
+    </div>
+
 
 
       <OrderModal :visible="modalVisible" :selectedService="selectedService" @close="modalVisible = false" />
@@ -243,7 +247,7 @@ import { ref } from 'vue'
 import OrderModal from '~/components/OrderModal.vue'
 
 useHead({
-  title: 'Zamonaviy va professional veb-saytlar | Biznesingiz uchun yechim',
+  title: 'Zamonaviy va professional IT xizmatlari | Biznesingiz uchun yechim',
   meta: [
     { name: 'description', content: 'Brendingizga mos, mobilga moslashtirilgan va foydalanuvchiga qulay veb-saytlar yaratamiz. Biznesingizni raqamli dunyoga olib chiqamiz.' },
     { name: 'keywords', content: 'sayt yaratish, web sayt yaratish, landing page, landing page yaratish, chiroyli sayt yaratish, onlayn do‘kon, web development, mobilga mos saytlar' },
@@ -543,7 +547,50 @@ const services = [
       'Mikrofon bilan sifatli audio yozish',
       'Video montaj bilan to‘liq paket mumkin'
     ]
+  },
+  {
+    title: 'Mobil Ilova (Android/iOS)',
+    category: 'Mobile',
+    price: '5mln so`m dan boshlab',
+    priceValue: 5000000,
+    features: [
+      'Platformaga mos ilova (Android/iOS)',
+      'Registratsiya va login tizimi',
+      'Push xabarnomalar',
+      'Maʼlumotlar bilan ishlash (API)',
+      'Responsiv interfeys',
+      'App Store yoki Play Marketga yuklash'
+    ]
+  },
+  {
+    title: 'Biznes uchun Mobil Ilova',
+    category: 'Mobile',
+    price: '6mln so`m dan boshlab',
+    priceValue: 6000000,
+    features: [
+      'Mahsulotlar va xizmatlar ro‘yxati',
+      'Buyurtma berish va kuzatish',
+      'To‘lov tizimlari integratsiyasi',
+      'Foydalanuvchi profillari',
+      'Admin panel bilan bog‘lanish',
+      'Statistikalar va hisobotlar'
+    ]
+  },
+  {
+    title: 'Mobil CRM Ilova',
+    category: 'Mobile',
+    price: '10mln so`m dan boshlab',
+    priceValue: 10000000,
+    features: [
+      'Xodimlar va mijozlar ro‘yxati',
+      'Buyurtmalar boshqaruvi',
+      'Ichki bildirishnoma va eslatmalar',
+      'Maʼlumotlar bilan real vaqt rejimida ishlash',
+      'Offline rejimda foydalanish imkoniyati',
+      'Admin panel bilan sinxronizatsiya'
+    ]
   }
+
 ];
 
 
