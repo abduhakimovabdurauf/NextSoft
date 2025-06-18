@@ -2,7 +2,7 @@
 <div class="max-w-screen overflow-x-hidden md:overflow-x-visible">
   <div class="bg-white text-gray-800 font-poppins max-w-screen">
     <navbar/>
-    <section id="home" class="relative h-screen bg-gray-50 overflow-hidden flex items-center">
+    <section id="home" class="relative h-[90vh] bg-gray-50 overflow-hidden flex items-center">
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
       
       <NuxtImg
