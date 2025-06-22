@@ -1,7 +1,5 @@
 <template>
-  <section id="home" class="relative h-[90vh] bg-gray-50 overflow-hidden flex items-center">
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <NuxtImg src="/background.jpg" alt="Fon rasmi" class="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none z-0" />
+  <hero-banner>
     <div data-aos="fade-right" class="relative z-20 px-4 sm:px-10 lg:px-20 w-full max-w-7xl text-white">
       <div class="text-left">
         <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 sm:leading-[55px] md:leading-[65px]"> Biznesingiz uchun zamonaviy va professional veb-saytlar! </p>
@@ -9,7 +7,8 @@
         <a href="#services" class="inline-block bg-black text-white text-sm sm:text-base md:text-lg font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-800 transition duration-300 shadow-md"> Xizmatlarimizni ko‘rish </a>
       </div>
     </div>
-  </section>
+  </hero-banner>
+    
   <section id="about" class="relative lg:min-h-screen flex flex-col justify-between md:flex-row items-center bg-white py-16 px-4 sm:px-8 lg:px-16 bg-cover bg-center">
     <div class="z-10 max-w-2xl text-left bg-white/90 p-6">
       <h2 data-aos="fade-down" class="text-2xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900"> Biz haqimizda </h2>
@@ -21,10 +20,18 @@
       <NuxtImg src="/about-background.png" alt="Biz haqimizda" width="600" height="600" class="object-cover floating-image" />
     </div>
   </section>
-  <section id="portfolio" class="py-20 sm:px-8 lg:px-16 bg-gray-50 px-2">
+
+  <section id="portfolio" class="py-20 sm:px-8 lg:px-16 bg-gray-50 relative overflow-hidden">
     <h2 data-aos="fade-down" class="text-3xl font-bold mb-10 text-center">Portfolio</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div v-for="site in sites" :key="site.link" data-aos="fade-right" class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition">
+
+    <!-- Project cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+      <div
+        v-for="site in filteredProjects.slice(0, 10)"
+        :key="site.link"
+        data-aos="fade-right"
+        class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition"
+      >
         <a :href="site.link" target="_blank" class="block">
           <div class="flex flex-col items-center">
             <NuxtImg :src="site.desktopImage" alt="Desktop screenshot" class="rounded-md w-full" />
@@ -35,36 +42,72 @@
           </div>
         </a>
       </div>
+      <div
+      class="absolute bottom-5 left-0 w-full h-12 shadow-[0_-25px_40px_-10px_rgba(255,255,255,0.15)] z-10 pointer-events-none">
+    </div>
+    </div>
+
+    <!-- Bottom shadow -->
+    
+
+
+    <!-- See all button -->
+    <div class="mt-12 flex justify-center z-10 relative">
+      <NuxtLink
+        to="/portfolio"
+        class="px-6 py-3 bg-green-600 text-white rounded-full font-medium hover:bg-green-700 transition"
+      >
+        Barchasini ko‘rish
+      </NuxtLink>
     </div>
   </section>
+
+
   <section id="services" class="py-20 sm:px-8 lg:px-16 bg-gray-50">
     <h2 data-aos="fade-down" class="text-4xl font-bold text-center mb-16 text-gray-800">Xizmatlarimiz</h2>
-    <!-- Kategoriya filter -->
-    <div class="flex flex-wrap justify-center gap-4 mb-10">
-      <button v-for="category in categories" :key="category" @click="selectedCategory = category" :class="[
-                    'px-4 py-2 rounded-full text-sm font-medium transition-all',
-                    selectedCategory === category
-                    ? 'bg-green-500 text-white'
-                    : 'bg-gray-200 text-gray-800 hover:bg-green-100'
-                ]">
-        {{ category }}
-      </button>
-    </div>
-    <!-- Xizmatlar kartalari -->
-    <div class="grid gap-10 px-4 sm:px-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <div v-for="(card, index) in filteredServices" :key="index" data-aos="fade-up" class="bg-white cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col p-8 min-h-[400px] w-full rounded-2xl shadow-xl">
+    <div class="grid gap-10 px-4 sm:px-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 relative">
+      <div
+        v-for="(card, index) in filteredServices.slice(0, 12)"
+        :key="index"
+        data-aos="fade-up"
+        class="bg-white cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col p-8 min-h-[400px] w-full rounded-2xl shadow-xl z-10"
+      >
         <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ card.title }}</h3>
         <ul class="space-y-3 text-gray-700 mb-6 text-base leading-relaxed">
-          <li v-for="(item, i) in card.features" :key="i" class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg">
+          <li
+            v-for="(item, i) in card.features"
+            :key="i"
+            class="flex items-start gap-2 before:content-['✔'] before:text-green-500 before:text-lg"
+          >
             {{ item }}
           </li>
         </ul>
         <p class="font-bold text-lg text-green-500 mt-auto text-right">{{ card.price }}</p>
-        <button @click="openModal(card.title)" class="mt-4 bg-green-500 cursor-pointer text-white py-2 px-4 rounded transition-all duration-300 hover:bg-green-600"> Buyurtma berish </button>
+        <button
+          @click="openModal(card.title)"
+          class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+        >
+          Buyurtma berish
+        </button>
       </div>
+
+      <!-- Pastki oq shadow (bular davom etadi degan signal) -->
+      <div class="absolute bottom-0 left-0 w-full h-32 bg-white shadow-[0px_-60px_60px_10px_rgba(255,255,255,1)] pointer-events-none z-0"></div>
     </div>
+    <!-- Button to /services page -->
+    <div class="mt-16 flex justify-center">
+      <NuxtLink to="/services">
+        <button class="bg-green-500 text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-green-600 transition">
+          Barcha xizmatlarni ko‘rish
+        </button>
+      </NuxtLink>
+    </div>
+
+
     <OrderModal :visible="modalVisible" :selectedService="selectedService" @close="modalVisible = false" />
+
   </section>
+  
   <section class="py-20 px-6 bg-[#f8fbff]">
     <h2 data-aos="fade-down" class="text-4xl font-bold text-center mb-16 text-gray-800">Jarayon qanday bo'ladi ?</h2>
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -100,87 +143,66 @@
       </div>
     </div>
   </section>
-  
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import OrderModal from '~/components/OrderModal.vue'
+import { useServicesStore } from '~/stores/services'
+import { useHead } from '#imports'
+import { usePortfolioStore } from '~/stores/portfolio'
+import { storeToRefs } from 'pinia'
 
+const config = useRuntimeConfig()
 useHead({
-  title: 'Zamonaviy va professional IT xizmatlari | Biznesingiz uchun yechim',
+  title: 'Zamonaviy IT xizmatlari | Biznesingiz uchun raqamli yechim',
   meta: [
-    { name: 'description', content: 'Brendingizga mos, mobilga moslashtirilgan va foydalanuvchiga qulay veb-saytlar yaratamiz. Biznesingizni raqamli dunyoga olib chiqamiz.' },
-    { name: 'keywords', content: 'sayt yaratish, web sayt yaratish, landing page, landing page yaratish, chiroyli sayt yaratish, onlayn do‘kon, web development, mobilga mos saytlar' },
+    {
+      name: 'description',
+      content: 'Biznesingiz uchun professional IT xizmatlari: web saytlar, mobil ilovalar, grafik dizayn, motion dizayn, video montaj va texnik qo‘llab-quvvatlash. Sizga mos kompleks yechimlar taqdim etamiz.'
+    },
+    {
+      name: 'keywords',
+      content: 'IT xizmatlari, sayt yaratish, grafik dizayn, motion dizayn, web development, mobil ilovalar, texnik yordam, montaj xizmatlari, online do‘kon yaratish, raqamli xizmatlar'
+    },
     { name: 'robots', content: 'index, follow' },
-    { property: 'og:title', content: 'Zamonaviy va professional veb-saytlar' },
-    { property: 'og:description', content: 'Biznesingiz uchun moslashtirilgan websaytlar' },
-    { property: 'og:image', content: '/background.jpg' },
+
+    // Open Graph
+    { property: 'og:title', content: 'Zamonaviy IT va dizayn xizmatlari' },
+    { property: 'og:description', content: 'Web, dizayn, montaj va texnik yechimlar — barchasi bizda.' },
+    { property: 'og:image', content: `${config.siteUrl}/background.jpg` },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://sizningsaytingiz.uz' }
+    { property: 'og:url', content: config.siteUrl },
+
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Zamonaviy IT va dizayn xizmatlari' },
+    { name: 'twitter:description', content: 'Web, dizayn, montaj va texnik yechimlar — barchasi bizda.' },
+    { name: 'twitter:image', content: `${config.siteUrl}/background.jpg` }
   ],
   link: [
-    { rel: 'canonical', href: 'https://sizningsaytingiz.uz' }
+    { rel: 'canonical', href: config.siteUrl }
   ]
 })
 
-const sites = [
-  {
-    title: 'BizSoft',
-    link: 'https://bizsoft.uz/',
-    desktopImage: '/bizsoft.png',
-    description: 'BizSoft kompaniyasi uchun biznes veb-sayt',
-  },
-  {
-    title: 'GoPharm',
-    link: 'https://gopharm.uz/',
-    desktopImage: '/gopharm.png',
-    description: 'Dorixona tizimi uchun onlayn platforma',
-  },
-  {
-    title: 'BurgerToy',
-    link: 'https://burgertoy.uz/',
-    desktopImage: '/burgertoy.png',
-    description: 'Fast food tarmog‘i uchun zamonaviy sayt',
-  },
-  {
-    title: 'Lotin.uz',
-    link: 'https://lotin.uz/',
-    desktopImage: '/lotin.png',
-    description: 'Lotin yozuvini o‘rganish uchun platforma',
-  },
-  {
-    title: 'ESuv',
-    link: 'https://esuv.uz/',
-    desktopImage: '/esuv.png',
-    description: 'Elektron suv tizimi uchun veb-sayt',
-  },
-  {
-    title: 'Tellock',
-    link: 'https://tellock.uz/',
-    desktopImage: '/telloc.png',
-    description: 'Aqlli qulflar uchun mahsulot taqdimoti sayti',
-  },
-  // {
-  //   title: 'Quva Turizm',
-  //   link: 'https://quvaturizm.uz/',
-  //   desktopImage: '/quvaturizm.png',
-  //   description: 'Turizmni rivojlantirish bo‘yicha rasmiy sayt',
-  // },
-  {
-    title: 'MRTM.uz',
-    link: 'https://mrtm.uz/',
-    desktopImage: '/mrtm.png',
-    description: 'Raqamli texnologiyalar markazi uchun web-sayt',
-  },
-  {
-    title: 'Wecom Ltd',
-    link: 'https://wecomltd.com/',
-    desktopImage: '/wecom.png',
-    description: 'Yonilg‘i, o‘g‘it va metallarni qayta ishlovchi kompaniya uchun sayt',
-  }
-]
 
+
+
+const portfolioStore = usePortfolioStore();
+const {
+  filteredProjects,
+  categories: portfolioCategories,
+  selectedCategory: selectedPortfolioCategory
+} = storeToRefs(portfolioStore);
+const { setCategory: setPortfolioCategory } = portfolioStore;
+
+
+// 2. Services Store
+const serviceStore = useServicesStore();
+const {
+  filteredServices,
+  categories: serviceCategories,
+  selectedCategory: selectedServiceCategory
+} = storeToRefs(serviceStore);
+const { setCategory: setServiceCategory } = serviceStore;
 
 
 const modalVisible = ref(false)
@@ -191,283 +213,8 @@ const openModal = (serviceName) => {
   modalVisible.value = true
 }
 
-const services = [
-  {
-    title: 'Landing Page',
-    category: 'Web',
-    price: '1mln so`m dan boshlab',
-    priceValue: 1000000,
-    features: [
-      'Bitta sahifali tuzilma',
-      'Mijozni jalb qiluvchi dizayn',
-      'Responsiv dizayn',
-      'Kontakt forma',
-      'Ijtimoiy tarmoqlar havolasi',
-      'CTA tugmalari'
-    ]
-  },
-  {
-    title: 'Vizitka Sayt',
-    category: 'Web',
-    price: '2mln so`m dan boshlab',
-    priceValue: 2000000,
-    features: [
-      "Kompaniya haqida ma'lumot sahifasi",
-      'Kontaktlar va joylashuv',
-      'Logotip va banner joylashuvi',
-      'Ijtimoiy tarmoqlar integratsiyasi',
-      'Mobil moslashuvchanlik',
-      '1-3 ta sahifadan iborat'
-    ]
-  },
-  {
-    title: 'Koʻp Sahifali Sayt',
-    category: 'Web',
-    price: '5mln so`m dan boshlab',
-    priceValue: 5000000,
-    features: [
-      'Har bir bo‘lim uchun alohida sahifa',
-      'Murakkab navigatsiya',
-      'SEO tayyor dizayn',
-      'Formalar va galereyalar',
-      'Xizmatlar, portfolio, blog bo‘limlari',
-      'Responsiv dizayn'
-    ]
-  },
-  {
-    title: 'Onlayn Doʻkon',
-    category: 'Web',
-    price: '7mln so`m dan boshlab',
-    priceValue: 7000000,
-    features: [
-      'Mahsulotlar katalogi',
-      'Savatcha va buyurtma shakli',
-      'To‘lov tizimlari integratsiyasi',
-      'Admin panel qo‘shilishi mumkin (+$100)',
-      'Mahsulotlar filtr va qidiruvi',
-      'Mobil uchun moslashuv'
-    ]
-  },
-  {
-    title: 'CRM Tizimi',
-    category: 'Tizimlar',
-    price: '10mln so`m dan boshlab',
-    priceValue: 10000000,
-    features: [
-      'Mijozlar bazasini yuritish',
-      'Buyurtmalarni boshqarish',
-      'Xodimlar boshqaruvi',
-      'Statistika va hisobotlar',
-      'Foydalanuvchilar rollari',
-      'Kirish va ruxsat tizimi',
-      'Admin panel narxga kiritilgan'
-    ]
-  },
-  {
-    title: 'Admin Panel',
-    category: 'Tizimlar',
-    price: '+1mln so`m',
-    priceValue: 1000000,
-    features: [
-      'Maxsus boshqaruv paneli',
-      'Maʼlumotlar tahriri va boshqaruvi',
-      'Foydalanuvchi autentifikatsiyasi',
-      'Yopiq kirish sahifasi',
-      'Saytga to‘liq integratsiya'
-    ]
-  },
-  {
-    title: 'Telegram Bot',
-    category: 'Botlar',
-    price: '2mln so`m dan boshlab',
-    priceValue: 2000000,
-    features: [
-      'Avtomatlashtirilgan javoblar',
-      'Buyurtma va so‘rov shakllari',
-      'Admin panel bilan integratsiya',
-      'Statistikalar va foydalanuvchi nazorati',
-      'Inline tugmalar, media qo‘llab-quvvatlovi',
-      'Har qanday biznesga moslashtirish'
-    ]
-  },
-  {
-    title: 'UI/UX Dizayn',
-    category: 'Design',
-    price: '1.5mln so`m dan boshlab',
-    priceValue: 1500000,
-    features: [
-      'Figma yoki Adobe XD formatida',
-      'Mobil va desktop versiya',
-      'Interaktiv prototip',
-      'Brendga mos dizayn konsepsiyasi',
-      'Foydalanuvchi tajribasi (UX) optimallashtirilgan',
-      'Developer-friendly eksport'
-    ]
-  },
-  {
-    title: 'Grafik Dizayn (To‘plam)',
-    category: 'Design',
-    price: '500 ming so`mdan boshlab',
-    priceValue: 500000,
-    features: [
-      'Logo dizayn',
-      'Vizitka va flayer',
-      'Prezentatsiya slaydlar',
-      'Brandbook yaratish',
-      'SMM post dizaynlari',
-      'Menyu va prevyu dizaynlar'
-    ]
-  },
-  {
-    title: 'Logo Dizayn',
-    category: 'Design',
-    price: '500 ming so`mdan boshlab',
-    priceValue: 500000,
-    features: [
-      'Minimalistik va zamonaviy dizayn',
-      'Rang variantlari',
-      'Vector formatda eksport (SVG, PDF)',
-      '2-3 ta variantdan tanlash',
-      'Qayta tahrirlash imkoniyati'
-    ]
-  },
-  {
-    title: 'Brandbook',
-    category: 'Design',
-    price: '5mln so`mdan boshlab',
-    priceValue: 5000000,
-    features: [
-      'Logo foydalanish qoidalari',
-      'Rang palitrasi',
-      'Shriftlar va ikonlar',
-      'Grafik elementlar',
-      'To‘liq PDF ko‘rinishida'
-    ]
-  },
-  {
-    title: 'Motion Dizayn',
-    category: 'Video',
-    price: '2mln so`m dan boshlab',
-    priceValue: 2000000,
-    features: [
-      'Intro/outro videolar',
-      'Reklama videolari',
-      'SMM uchun harakatli postlar',
-      'Video animatsiya',
-      'Brendingizga mos harakatlar'
-    ]
-  },
-  {
-    title: '3D Dizayn',
-    category: 'Design',
-    price: '3mln so`m dan boshlab',
-    priceValue: 3000000,
-    features: [
-      'Mahsulot modellari',
-      'Interyer/eksteryer vizualizatsiya',
-      '3D animatsiyalar',
-      'Reklama uchun 3D sahnalar',
-      'Blender formatida yoki video/picture'
-    ]
-  },
-  {
-    title: 'Hosting Xizmatlari',
-    category: 'Web',
-    price: '100 ming so`mdan boshlab',
-    priceValue: 100000,
-    features: [
-      '1 yilgacha hosting',
-      'Domen ulash xizmatlari',
-      'SSL sertifikat',
-      '24/7 texnik qo‘llab-quvvatlash',
-      'Saytni yuklab berish va ulash'
-    ]
-  },
-  {
-    title: 'Video Montaj',
-    category: 'Video',
-    price: '2mln so`m dan boshlab',
-    priceValue: 2000000,
-    features: [
-      'Reklama, vlog, ijtimoiy tarmoq videolari',
-      'Rang koreksiyasi va sountrack qo‘shish',
-      'Subtitrlash va animatsiyalar',
-      'Full HD yoki 4K eksport',
-      'Mijozga mos formatda yetkazib berish'
-    ]
-  },
-  {
-    title: 'Video Tasvirga Olish',
-    category: 'Video',
-    price: '2.5mln so`m dan boshlab',
-    priceValue: 2500000,
-    features: [
-      '1-2 kamerali professional suratga olish',
-      'Yoritish jihozlari bilan ta’minlash',
-      'Joyda yoki studiyada tasvirga olish',
-      'Mikrofon bilan sifatli audio yozish',
-      'Video montaj bilan to‘liq paket mumkin'
-    ]
-  },
-  {
-    title: 'Mobil Ilova (Android/iOS)',
-    category: 'Mobile',
-    price: '5mln so`m dan boshlab',
-    priceValue: 5000000,
-    features: [
-      'Platformaga mos ilova (Android/iOS)',
-      'Registratsiya va login tizimi',
-      'Push xabarnomalar',
-      'Maʼlumotlar bilan ishlash (API)',
-      'Responsiv interfeys',
-      'App Store yoki Play Marketga yuklash'
-    ]
-  },
-  {
-    title: 'Biznes uchun Mobil Ilova',
-    category: 'Mobile',
-    price: '6mln so`m dan boshlab',
-    priceValue: 6000000,
-    features: [
-      'Mahsulotlar va xizmatlar ro‘yxati',
-      'Buyurtma berish va kuzatish',
-      'To‘lov tizimlari integratsiyasi',
-      'Foydalanuvchi profillari',
-      'Admin panel bilan bog‘lanish',
-      'Statistikalar va hisobotlar'
-    ]
-  },
-  {
-    title: 'Mobil CRM Ilova',
-    category: 'Mobile',
-    price: '10mln so`m dan boshlab',
-    priceValue: 10000000,
-    features: [
-      'Xodimlar va mijozlar ro‘yxati',
-      'Buyurtmalar boshqaruvi',
-      'Ichki bildirishnoma va eslatmalar',
-      'Maʼlumotlar bilan real vaqt rejimida ishlash',
-      'Offline rejimda foydalanish imkoniyati',
-      'Admin panel bilan sinxronizatsiya'
-    ]
-  }
-];
-
-
-const selectedCategory = ref('Barchasi');
-
-const filteredServices = computed(() => {
-  const filtered = selectedCategory.value === 'Barchasi'
-    ? services
-    : services.filter(service => service.category === selectedCategory.value);
-
-  return filtered.sort((a, b) => a.priceValue - b.priceValue);
-});
-
-const categories = computed(() => ['Barchasi', ...new Set(services.map(s => s.category))]);
-
-
 </script>
+
 
 <style>
 

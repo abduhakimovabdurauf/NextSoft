@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4">
     <div class="bg-white rounded-xl p-6 w-full max-w-md shadow-xl relative">
-      <button @click="$emit('close')" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+      <button @click="$emit('close')" class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-3xl">&times;</button>
       <h2 class="text-xl font-semibold mb-4">Buyurtma berish</h2>
 
       <p class="text-sm text-gray-600 mb-4">Tanlangan xizmat: <strong>{{ selectedService }}</strong></p>

@@ -8,10 +8,10 @@
 
       <!-- Desktop nav links -->
       <div class="hidden md:flex space-x-8">
-        <a href="#home" class="text-gray-700 hover:text-black font-medium transition">Bosh sahifa</a>
-        <a href="#about" class="text-gray-700 hover:text-black font-medium transition">Biz haqimizda</a>
-        <a href="#portfolio" class="text-gray-700 hover:text-black font-medium transition">Portfolio</a>
-        <a href="#services" class="text-gray-700 hover:text-black font-medium transition">Xizmatlar</a>
+        <NuxtLink to="/" class="text-gray-700 hover:text-black font-medium transition">Bosh sahifa</NuxtLink>
+        <NuxtLink to="/about" class="text-gray-700 hover:text-black font-medium transition">Biz haqimizda</NuxtLink>
+        <NuxtLink to="/portfolio" class="text-gray-700 hover:text-black font-medium transition">Portfolio</NuxtLink>
+        <NuxtLink to="/services" class="text-gray-700 hover:text-black font-medium transition">Xizmatlar</NuxtLink>
         <a href="#contact" class="text-gray-700 hover:text-black font-medium transition">Bog‘lanish</a>
       </div>
 
@@ -31,10 +31,10 @@
       id="mobile-menu"
       class="md:hidden overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-4 bg-white space-y-2"
     >
-      <a href="#home" class="block text-gray-700 hover:text-black">Bosh sahifa</a>
-      <a href="#about" class="block text-gray-700 hover:text-black">Biz haqimizda</a>
-      <a href="#portfolio" class="block text-gray-700 hover:text-black">Portfolio</a>
-      <a href="#services" class="block text-gray-700 hover:text-black">Xizmatlar</a>
+      <NuxtLink to="/" class="block text-gray-700 hover:text-black">Bosh sahifa</NuxtLink>
+      <NuxtLink to="/about" class="block text-gray-700 hover:text-black">Biz haqimizda</NuxtLink>
+      <NuxtLink to="/portfolio" class="block text-gray-700 hover:text-black">Portfolio</NuxtLink>
+      <NuxtLink to="/services" class="block text-gray-700 hover:text-black">Xizmatlar</NuxtLink>
       <a href="#contact" class="block text-gray-700 hover:text-black">Bog‘lanish</a>
     </div>
   </nav>

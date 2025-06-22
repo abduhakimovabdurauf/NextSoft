@@ -1,8 +1,4 @@
-* {
-  box-sizing: border-box;
-  outline: 2px solid red !important;
-}
 
-html, body {
-  overflow-x: hidden !important;
+button {
+  cursor: pointer !important;
 }

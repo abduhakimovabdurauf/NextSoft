@@ -5,11 +5,14 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss','@nuxt/image','@pinia/nuxt'],
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
-    telegramChatId: process.env.TELEGRAM_CHAT_ID
+    telegramChatId: process.env.TELEGRAM_CHAT_ID,
+    siteUrl: process.env.SITE_URL
+
   },
   plugins: [
     '~/plugins/aos.client.js'
   ],
+  css: ['./assets/main.css'],
   app: {
     head: {
       link: [
