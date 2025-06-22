@@ -165,14 +165,11 @@ useHead({
       content: 'IT xizmatlari, sayt yaratish, grafik dizayn, motion dizayn, web development, mobil ilovalar, texnik yordam, montaj xizmatlari, online do‘kon yaratish, raqamli xizmatlar'
     },
     { name: 'robots', content: 'index, follow' },
-
-    // Open Graph
     { property: 'og:title', content: 'Zamonaviy IT va dizayn xizmatlari' },
     { property: 'og:description', content: 'Web, dizayn, montaj va texnik yechimlar — barchasi bizda.' },
     { property: 'og:image', content: `${config.siteUrl}/background.jpg` },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: config.siteUrl },
-
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Zamonaviy IT va dizayn xizmatlari' },
     { name: 'twitter:description', content: 'Web, dizayn, montaj va texnik yechimlar — barchasi bizda.' },
